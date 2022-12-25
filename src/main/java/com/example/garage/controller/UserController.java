@@ -2,11 +2,11 @@ package com.example.garage.controller;
 
 import com.example.garage.model.User;
 import com.example.garage.service.UserService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@RestController
+@Controller
 @RequestMapping("/users")
 public class UserController {
 
@@ -17,22 +17,26 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User getUser(@PathVariable int id) {
-        return userService.getUser(id);
+    public String getUser(@PathVariable int id, Model model) {
+        model.addAttribute("user", userService.getUser(id));
+        return "user";
     }
 
     @GetMapping
-    public List<User> getUsers() {
-        return userService.getUsers();
+    public String getUsers(Model model) {
+        model.addAttribute("users", userService.getUsers());
+        return "users";
     }
 
     @PostMapping
-    public User addUser(@RequestBody User user) {
-        return userService.addUser(user);
+    public String addUser(@RequestBody User user, Model model) {
+        model.addAttribute("user", userService.addUser(user));
+        return "user";
     }
 
     @PostMapping("/{userId}/{carId}")
-    public User AddCarToUser(@PathVariable int userId, @PathVariable int carId) {
-        return userService.AddCarToUser(userId, carId);
+    public String AddCarToUser(@PathVariable int userId, @PathVariable int carId, Model model) {
+        model.addAttribute("user", userService.AddCarToUser(userId, carId));
+        return "user";
     }
 }
