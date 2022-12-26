@@ -10,7 +10,7 @@ import java.util.List;
 public class CarService {
 
     private int carCounter = 1;
-    private List<Car> cars = new LinkedList<>();
+    private final List<Car> cars = new LinkedList<>();
 
     public Car addCar(Car car) {
         car.setId(carCounter);
@@ -20,9 +20,9 @@ public class CarService {
     }
 
     public Car getCar(int id) {
-        for (int i = 0; i < cars.size(); i++) {
-            if (cars.get(i).getId() == id) {
-                return cars.get(i);
+        for (Car car : cars) {
+            if (car.getId() == id) {
+                return car;
             }
         }
         return null;

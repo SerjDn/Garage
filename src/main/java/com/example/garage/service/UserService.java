@@ -11,8 +11,8 @@ import java.util.List;
 public class UserService {
 
     private int userCounter = 1;
-    private List<User> users = new LinkedList<>();
-    private CarService carService;
+    private final List<User> users = new LinkedList<>();
+    private final CarService carService;
 
     public UserService(CarService carService) {
         this.carService = carService;
@@ -20,16 +20,16 @@ public class UserService {
 
     public User addUser(User user) {
         user.setId(userCounter);
-        user.setUserCars(new LinkedList<Car>());
+        user.setUserCars(new LinkedList<>());
         users.add(user);
         userCounter++;
         return user;
     }
 
     public User getUser(int id) {
-        for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getId() == id) {
-                return users.get(i);
+        for (User user : users) {
+            if (user.getId() == id) {
+                return user;
             }
         }
         return null;
@@ -40,14 +40,14 @@ public class UserService {
     }
 
     public User AddCarToUser(int userId, int carId) {
-        for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getId() == userId) {
+        for (User user : users) {
+            if (user.getId() == userId) {
 
-                List<Car> tempCars = users.get(i).getUserCars();
+                List<Car> tempCars = user.getUserCars();
                 tempCars.add(carService.getCar(carId));
-                users.get(i).setUserCars(tempCars);
+                user.setUserCars(tempCars);
 
-                return users.get(i);
+                return user;
             }
         }
         return null;
