@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+<h3>
+    <tr th:each="user: ${users}">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <td th:text="'id: ' + ${user.id}"/><br>
+                <td th:text="'name: ' + ${user.name}"/><br>
+                <td th:text="'userCars: ' + ${user.userCars}"/><br>
+            </li>
+        </ul>
+    </tr>
+</h3>
+
+</body>
+</html>
