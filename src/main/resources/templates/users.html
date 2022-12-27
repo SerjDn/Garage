@@ -8,15 +8,32 @@
 <body>
 
 <h3>
-    <tr th:each="user: ${users}">
-        <ul class="list-group">
-            <li class="list-group-item">
-                <td th:text="'id: ' + ${user.id}"/><br>
-                <td th:text="'name: ' + ${user.name}"/><br>
-                <td th:text="'userCars: ' + ${user.userCars}"/><br>
-            </li>
-        </ul>
-    </tr>
+    <table class="table table-bordered table-dark">
+        <thead>
+        <tr>
+            <th>User id</th>
+            <th>User Name</th>
+            <th>Cars</th>
+        </tr>
+        </thead>
+        <tbody th:each="user: ${users}">
+        <tr>
+            <td th:text="'id: ' + ${user.id}"></td>
+            <td th:text="'name: ' + ${user.name}"></td>
+            <td>
+                <ul th:each="car: ${user.userCars}">
+                    <li>
+                        <h4 th:text="'Car: ' + ${car.id}"></h4>
+                        <ul>
+                            <li th:text="'brand: ' + ${car.brand}"></li>
+                            <li th:text="'model: ' + ${car.model}"></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+        </table>
 </h3>
 
 </body>
